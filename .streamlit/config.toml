@@ -1,0 +1,8 @@
+[theme]
+primaryColor = "#0EA5E9"            # Sky Blue
+backgroundColor = "#F7FBFC"         # Very light blue/teal tint
+secondaryBackgroundColor = "#E6F7F4" # Light teal
+textColor = "#0F172A"              # Slate (dark)
+font = "sans serif"
+
+
