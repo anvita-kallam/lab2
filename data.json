@@ -1,17 +1,242 @@
-{
-    "chart_title": "Sample Chart Data",
-    "data_points": [
-        {
-            "label": "Item A",
-            "value": 15
-        },
-        {
-            "label": "Item B",
-            "value": 30
-        },
-        {
-            "label": "Item C",
-            "value": 22
-        }
-    ]
-}
+[
+    {
+        "Date": "2025-09-12",
+        "Song": "One Dance",
+        "Artist": "Drake",
+        "Album": "One Dance Album",
+        "Genre": "Rap",
+        "Energy Level": 7,
+        "Mood Fit": "Focused",
+        "Replays": 1,
+        "Lyrics Impact": 6,
+        "Overall Rating": 8
+    },
+    {
+        "Date": "2025-09-13",
+        "Song": "God's Plan",
+        "Artist": "Drake",
+        "Album": "God's Plan Album",
+        "Genre": "Rap",
+        "Energy Level": 6,
+        "Mood Fit": "Focused",
+        "Replays": 3,
+        "Lyrics Impact": 5,
+        "Overall Rating": 7
+    },
+    {
+        "Date": "2025-09-14",
+        "Song": "Drip Too Hard",
+        "Artist": "Gunna",
+        "Album": "Drip Too Hard Album",
+        "Genre": "Trap",
+        "Energy Level": 9,
+        "Mood Fit": "Party",
+        "Replays": 1,
+        "Lyrics Impact": 6,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-15",
+        "Song": "Life Is Good",
+        "Artist": "Future",
+        "Album": "Life Is Good Album",
+        "Genre": "Rap",
+        "Energy Level": 9,
+        "Mood Fit": "Hype",
+        "Replays": 1,
+        "Lyrics Impact": 8,
+        "Overall Rating": 9
+    },
+    {
+        "Date": "2025-09-16",
+        "Song": "Laugh Now Cry Later",
+        "Artist": "Drake",
+        "Album": "Laugh Now Cry Later Album",
+        "Genre": "Rap",
+        "Energy Level": 7,
+        "Mood Fit": "Sad",
+        "Replays": 2,
+        "Lyrics Impact": 7,
+        "Overall Rating": 9
+    },
+    {
+        "Date": "2025-09-17",
+        "Song": "SICKO MODE",
+        "Artist": "Travis Scott",
+        "Album": "SICKO MODE Album",
+        "Genre": "Rap/Trap",
+        "Energy Level": 9,
+        "Mood Fit": "Calm",
+        "Replays": 4,
+        "Lyrics Impact": 10,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-18",
+        "Song": "March Madness",
+        "Artist": "Future",
+        "Album": "March Madness Album",
+        "Genre": "Rap",
+        "Energy Level": 7,
+        "Mood Fit": "Focused",
+        "Replays": 5,
+        "Lyrics Impact": 9,
+        "Overall Rating": 8
+    },
+    {
+        "Date": "2025-09-19",
+        "Song": "Drip Too Hard",
+        "Artist": "Gunna",
+        "Album": "Drip Too Hard Album",
+        "Genre": "Trap",
+        "Energy Level": 10,
+        "Mood Fit": "Calm",
+        "Replays": 6,
+        "Lyrics Impact": 5,
+        "Overall Rating": 7
+    },
+    {
+        "Date": "2025-09-20",
+        "Song": "Life Is Good",
+        "Artist": "Future",
+        "Album": "Life Is Good Album",
+        "Genre": "Rap",
+        "Energy Level": 10,
+        "Mood Fit": "Calm",
+        "Replays": 1,
+        "Lyrics Impact": 6,
+        "Overall Rating": 8
+    },
+    {
+        "Date": "2025-09-21",
+        "Song": "Blinding Lights",
+        "Artist": "The Weeknd",
+        "Album": "Blinding Lights Album",
+        "Genre": "Rap/R&B",
+        "Energy Level": 8,
+        "Mood Fit": "Focused",
+        "Replays": 1,
+        "Lyrics Impact": 9,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-22",
+        "Song": "SICKO MODE",
+        "Artist": "Travis Scott",
+        "Album": "SICKO MODE Album",
+        "Genre": "Rap/Trap",
+        "Energy Level": 10,
+        "Mood Fit": "Sad",
+        "Replays": 4,
+        "Lyrics Impact": 10,
+        "Overall Rating": 9
+    },
+    {
+        "Date": "2025-09-23",
+        "Song": "Reminder",
+        "Artist": "The Weeknd",
+        "Album": "Reminder Album",
+        "Genre": "Rap/R&B",
+        "Energy Level": 8,
+        "Mood Fit": "Party",
+        "Replays": 5,
+        "Lyrics Impact": 9,
+        "Overall Rating": 9
+    },
+    {
+        "Date": "2025-09-24",
+        "Song": "SICKO MODE",
+        "Artist": "Travis Scott",
+        "Album": "SICKO MODE Album",
+        "Genre": "Rap/Trap",
+        "Energy Level": 8,
+        "Mood Fit": "Party",
+        "Replays": 1,
+        "Lyrics Impact": 4,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-25",
+        "Song": "Starboy",
+        "Artist": "The Weeknd",
+        "Album": "Starboy Album",
+        "Genre": "Rap/R&B",
+        "Energy Level": 8,
+        "Mood Fit": "Calm",
+        "Replays": 3,
+        "Lyrics Impact": 5,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-26",
+        "Song": "fukumean",
+        "Artist": "Gunna",
+        "Album": "fukumean Album",
+        "Genre": "Trap",
+        "Energy Level": 6,
+        "Mood Fit": "Calm",
+        "Replays": 5,
+        "Lyrics Impact": 7,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-27",
+        "Song": "fukumean",
+        "Artist": "Gunna",
+        "Album": "fukumean Album",
+        "Genre": "Trap",
+        "Energy Level": 7,
+        "Mood Fit": "Focused",
+        "Replays": 3,
+        "Lyrics Impact": 7,
+        "Overall Rating": 8
+    },
+    {
+        "Date": "2025-09-28",
+        "Song": "Save Your Tears",
+        "Artist": "The Weeknd",
+        "Album": "Save Your Tears Album",
+        "Genre": "Rap/R&B",
+        "Energy Level": 7,
+        "Mood Fit": "Sad",
+        "Replays": 1,
+        "Lyrics Impact": 10,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-09-29",
+        "Song": "Hotline Bling",
+        "Artist": "Drake",
+        "Album": "Hotline Bling Album",
+        "Genre": "Rap",
+        "Energy Level": 10,
+        "Mood Fit": "Focused",
+        "Replays": 1,
+        "Lyrics Impact": 9,
+        "Overall Rating": 7
+    },
+    {
+        "Date": "2025-09-30",
+        "Song": "Blinding Lights",
+        "Artist": "The Weeknd",
+        "Album": "Blinding Lights Album",
+        "Genre": "Rap/R&B",
+        "Energy Level": 7,
+        "Mood Fit": "Sad",
+        "Replays": 4,
+        "Lyrics Impact": 4,
+        "Overall Rating": 10
+    },
+    {
+        "Date": "2025-10-01",
+        "Song": "March Madness",
+        "Artist": "Future",
+        "Album": "March Madness Album",
+        "Genre": "Rap",
+        "Energy Level": 8,
+        "Mood Fit": "Party",
+        "Replays": 1,
+        "Lyrics Impact": 10,
+        "Overall Rating": 9
+    }
+]
