@@ -95,7 +95,8 @@ st.markdown(
 )
 
 # WELCOME PAGE TITLE
-st.title("Welcome to the Data Dashboard! 📊")
+st.title("Welcome to the Data Dashboard!")
+st.header("Anvita Kallam - Lab 2 - CS 1301")
 
 # INTRODUCTORY TEXT
 st.write("""
@@ -103,7 +104,7 @@ This application is designed to collect and visualize data.
 You can navigate to the different pages using the sidebar on the left.
 
 ### How to use this app:
-- **Survey Page**: Go here to input new data into our CSV file.
+- **Survey Page**: Go here to input new data into our CSV file about what you do in your free time and how many hours you spend on it per week.
 - **Visuals Page**: Go here to see the data visualized in different graphs.
 
 This project is part of CS 1301's Lab 2.

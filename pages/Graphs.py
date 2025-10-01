@@ -95,8 +95,9 @@ st.markdown(
 )
 
 # PAGE TITLE AND INFORMATION
-st.title("Data Visualizations 📈")
-st.write("This page displays graphs based on the collected data.")
+st.title("Data Visualizations")
+st.write("")
+st.write("This page displays graphs based on the collected data. The data is based on your input to the survey, as well as a json file that contains music data regarding what songs and artists are my favorites.")
 
 
 # DATA LOADING
@@ -106,13 +107,47 @@ st.write("This page displays graphs based on the collected data.")
 st.divider()
 st.header("Load Data")
 
-# TO DO:
-# 1. Load the data from 'data.csv' into a pandas DataFrame.
-#    - Use a 'try-except' block or 'os.path.exists' to handle cases where the file doesn't exist.
-# 2. Load the data from 'data.json' into a Python dictionary.
-#    - Use a 'try-except' block here as well.
+# Resolve CSV path (support either root or pages folder)
+csv_candidates = [
+    os.path.join("pages", "data.csv"),
+    "data.csv",
+]
+csv_path = next((p for p in csv_candidates if os.path.exists(p) and os.path.getsize(p) > 0), None)
 
-st.info("TODO: Add your data loading logic here.")
+# Load CSV
+csv_df = None
+if csv_path is None:
+    st.warning("No CSV file found yet. Add rows from the Survey page to create it.")
+else:
+    try:
+        csv_df = pd.read_csv(csv_path)
+        st.success(f"Loaded CSV from: {csv_path}")
+        with st.expander("Preview CSV data"):
+            st.dataframe(csv_df, use_container_width=True)
+    except Exception as e:
+        st.error(f"Failed to read CSV: {e}")
+
+# Load JSON
+json_path = "data.json"
+json_payload = None
+json_df = None
+if not os.path.exists(json_path) or os.path.getsize(json_path) == 0:
+    st.warning("JSON file 'data.json' is missing or empty.")
+else:
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            json_payload = json.load(f)
+        if isinstance(json_payload, list):
+            json_df = pd.DataFrame(json_payload)
+        elif isinstance(json_payload, dict) and "data_points" in json_payload:
+            json_df = pd.DataFrame(json_payload.get("data_points", []))
+        else:
+            json_df = pd.DataFrame(json_payload)
+        st.success("Loaded JSON from: data.json")
+        with st.expander("Preview JSON data"):
+            st.dataframe(json_df, use_container_width=True)
+    except Exception as e:
+        st.error(f"Failed to read JSON: {e}")
 
 
 # GRAPH CREATION
@@ -123,30 +158,92 @@ st.divider()
 st.header("Graphs")
 
 # GRAPH 1: STATIC GRAPH
-st.subheader("Graph 1: Static") # CHANGE THIS TO THE TITLE OF YOUR GRAPH
-# TO DO:
-# - Create a static graph (e.g., bar chart, line chart) using st.bar_chart() or st.line_chart().
-# - Use data from either the CSV or JSON file.
-# - Write a description explaining what the graph shows.
-st.warning("Placeholder for your first graph.")
+st.subheader("Graph 1: Top Ratings (Static - Data from JSON)")
+st.info("Displays the top Overall Ratings from the JSON dataset. Uses a simple bar chart.")
+if json_df is not None and {"Song", "Overall Rating"}.issubset(json_df.columns):
+    json_top = (
+        json_df[["Song", "Overall Rating"]]
+        .sort_values("Overall Rating", ascending=False)
+        .head(10)
+        .set_index("Song")
+    )
+    st.bar_chart(json_top["Overall Rating"])  # static chart
+else:
+    st.info("JSON data not available or missing required columns ('Song', 'Overall Rating').")
 
 
 # GRAPH 2: DYNAMIC GRAPH
-st.subheader("Graph 2: Dynamic") # CHANGE THIS TO THE TITLE OF YOUR GRAPH
-# TODO:
-# - Create a dynamic graph that changes based on user input.
-# - Use at least one interactive widget (e.g., st.slider, st.selectbox, st.multiselect).
-# - Use Streamlit's Session State (st.session_state) to manage the interaction.
-# - Add a '#NEW' comment next to at least 3 new Streamlit functions you use in this lab.
-# - Write a description explaining the graph and how to interact with it.
-st.warning("Placeholder for your second graph.")
+st.subheader("Graph 2: CSV Filtered Values (Dynamic - Data from CSV)")
+st.info("Interactively filter CSV rows by minimum value and category query, then visualize.")
+
+col_a, col_b = st.columns(2)
+with col_a:
+    min_value = st.slider(
+        "Minimum Value", 0, 100, 0, key="min_value"
+    )  #NEW
+with col_b:
+    category_query = st.text_input(
+        "Category contains…", value="", key="category_query"
+    )  #NEW
+
+if csv_df is not None and not csv_df.empty:
+    filtered_df = csv_df.copy()
+    # Use canonical column names now
+    category_col = "Category" if "Category" in filtered_df.columns else filtered_df.columns[0]
+    value_col = "Value" if "Value" in filtered_df.columns else (
+        filtered_df.columns[1] if len(filtered_df.columns) > 1 else filtered_df.columns[0]
+    )
+
+    filtered_df[value_col] = pd.to_numeric(filtered_df[value_col], errors="coerce")
+    filtered_df = filtered_df.dropna(subset=[value_col])
+
+    if category_query:
+        filtered_df = filtered_df[
+            filtered_df[category_col].astype(str).str.contains(category_query, case=False, na=False)
+        ]
+    filtered_df = filtered_df[filtered_df[value_col] >= min_value]
+
+    if not filtered_df.empty:
+        st.line_chart(filtered_df.set_index(category_col)[value_col])
+    else:
+        st.info("No rows match the current filters.")
+else:
+    st.info("CSV data not available yet. Add rows from the Survey page.")
 
 
 # GRAPH 3: DYNAMIC GRAPH
-st.subheader("Graph 3: Dynamic") # CHANGE THIS TO THE TITLE OF YOUR GRAPH
-# TO DO:
-# - Create another dynamic graph.
-# - If you used CSV data for Graph 1 & 2, you MUST use JSON data here (or vice-versa).
-# - This graph must also be interactive and use Session State.
-# - Remember to add a description and use '#NEW' comments.
-st.warning("Placeholder for your third graph.")
+st.subheader("Graph 3: Energy vs Lyrics Impact (Dynamic - Data from JSON)")
+st.info("Filter the JSON dataset by Artist/Genre and Mood to explore relationships.")
+
+if json_df is not None and {"Artist", "Genre", "Mood Fit", "Energy Level", "Lyrics Impact"}.issubset(json_df.columns):
+    group_by = st.selectbox("Group by", ["Artist", "Genre"], index=0, key="group_by")  #NEW
+    mood_options = sorted(json_df["Mood Fit"].dropna().unique().tolist())
+    moods = st.multiselect("Filter moods", mood_options, default=[], key="moods")  #NEW
+
+    df3 = json_df.copy()
+    if moods:
+        df3 = df3[df3["Mood Fit"].isin(moods)]
+
+    st.write("Each point is a song. X: Energy Level, Y: Lyrics Impact. Size encodes Overall Rating.")
+
+    for col in ["Energy Level", "Lyrics Impact", "Overall Rating"]:
+        df3[col] = pd.to_numeric(df3[col], errors="coerce")
+    df3 = df3.dropna(subset=["Energy Level", "Lyrics Impact"]).copy()
+
+    if not df3.empty:
+        st.scatter_chart(
+            df3[["Energy Level", "Lyrics Impact"]],
+            x="Energy Level",
+            y="Lyrics Impact",
+        )
+        summary = (
+            df3.groupby(group_by)[["Energy Level", "Lyrics Impact", "Overall Rating"]]
+            .mean(numeric_only=True)
+            .sort_values("Overall Rating", ascending=False)
+        )
+        with st.expander("Group summary (averages)"):
+            st.dataframe(summary, use_container_width=True)
+    else:
+        st.info("No points to display for the current filters.")
+else:
+    st.info("JSON data not available or missing the required columns.")

@@ -96,8 +96,9 @@ st.markdown(
 
 # PAGE TITLE AND USER DIRECTIONS
 st.title("Data Collection Survey - Free Time")
+st.write("")
 st.write("Please fill out the form below to add your data to the dataset. Add whatever you do in your free time and how many hours you spend on it per week! This is a chance to get to know yourself better and see what you spend your time on.")
-
+st.image("images/activity_image.png")
 # DATA INPUT FORM
 # 'st.form' creates a container that groups input widgets.
 # The form is submitted only when the user clicks the 'st.form_submit_button'.
