@@ -89,6 +89,26 @@ st.markdown(
         color: #ffe6f0;
     }
 
+    .stAlert > div[data-testid="alert"] {
+        border-radius: 8px !important;
+        border: 2px solid !important;
+        font-weight: 500 !important;
+    }
+    
+    .stAlert > div[data-testid="alert"]:has([data-testid="alert-warning"]) {
+        background-color: #e6f7f4 !important;
+        border-color: #008080 !important;
+        color: #006666 !important;
+    }
+    
+    
+    .stAlert > div[data-testid="alert"]:has([data-testid="alert-success"]) {
+        background-color: #e6f7f4 !important;
+        border-color: #28a745 !important;
+        color: #155724 !important;
+    }
+    
+
     </style>
     """,
     unsafe_allow_html=True
