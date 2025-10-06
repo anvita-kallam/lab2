@@ -96,9 +96,9 @@ st.markdown(
     }
     
     .stAlert > div[data-testid="alert"]:has([data-testid="alert-warning"]) {
-        background-color: #e6f7f4 !important;
-        border-color: #008080 !important;
-        color: #006666 !important;
+        background-color: #ffe6f0 !important;
+        border-color: #ff66b2 !important;
+        color: #8b2252 !important;
     }
     
     
