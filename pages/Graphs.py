@@ -88,25 +88,6 @@ st.markdown(
     .stSidebar .stText {
         color: #ffe6f0;
     }
-
-    .stAlert > div[data-testid="alert"] {
-        border-radius: 8px !important;
-        border: 2px solid !important;
-        font-weight: 500 !important;
-    }
-    
-    .stAlert > div[data-testid="alert"]:has([data-testid="alert-warning"]) {
-        background-color: #ffe6f0 !important;
-        border-color: #ff66b2 !important;
-        color: #8b2252 !important;
-    }
-    
-    
-    .stAlert > div[data-testid="alert"]:has([data-testid="alert-success"]) {
-        background-color: #e6f7f4 !important;
-        border-color: #28a745 !important;
-        color: #155724 !important;
-    }
     
 
     </style>
