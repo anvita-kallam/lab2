@@ -188,7 +188,6 @@ with col_b:
 
 if csv_df is not None and not csv_df.empty:
     filtered_df = csv_df.copy()
-    # Use canonical column names now
     category_col = "Category" if "Category" in filtered_df.columns else filtered_df.columns[0]
     value_col = "Value" if "Value" in filtered_df.columns else (
         filtered_df.columns[1] if len(filtered_df.columns) > 1 else filtered_df.columns[0]
