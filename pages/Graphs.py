@@ -152,6 +152,7 @@ st.header("Graphs")
 
 # GRAPH 1: STATIC
 st.subheader("Graph 1: Top Ratings (Static - JSON Data)")
+st.info("This graph shows the top 10 songs by overall rating.")
 if json_df is not None and {"Song", "Overall Rating"}.issubset(json_df.columns):
     json_top = (
         json_df[["Song", "Overall Rating"]]
@@ -165,6 +166,7 @@ else:
 
 # GRAPH 2: DYNAMIC (CSV)
 st.subheader("Graph 2: CSV Filtered Values (Dynamic - CSV Data)")
+st.info("This graph shows the relationship between the category and the value of the data.")
 if csv_df is not None and not csv_df.empty:
     col_a, col_b = st.columns(2)
     with col_a:
@@ -195,6 +197,7 @@ else:
 
 # GRAPH 3: DYNAMIC (JSON)
 st.subheader("Graph 3: Energy vs Lyrics Impact (Dynamic - JSON Data)")
+st.info("This graph shows the relationship between the energy level of a song and the impact of the lyrics on the overall rating of the song.")
 if json_df is not None and {"Artist", "Genre", "Mood Fit", "Energy Level", "Lyrics Impact"}.issubset(json_df.columns):
     group_by = st.selectbox("Group by", ["Artist", "Genre"], index=0)
     mood_options = sorted(json_df["Mood Fit"].dropna().unique().tolist())
