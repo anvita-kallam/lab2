@@ -121,27 +121,19 @@ if os.path.exists("data.csv") and os.path.getsize("data.csv") > 0:
 else:
     st.warning("CSV file not found or empty. Add data from the Survey page.")
 
-# Load JSON with error handling
+# Load JSON
 json_df = None
-if os.path.exists("data.json") and os.path.getsize("data.json") > 0:
-    try:
-        with open("data.json", "r", encoding="utf-8") as f:
-            json_payload = json.load(f)
-        
-        if isinstance(json_payload, list):
-            json_df = pd.DataFrame(json_payload)
-        elif isinstance(json_payload, dict) and "data_points" in json_payload:
-            json_df = pd.DataFrame(json_payload["data_points"])
-        else:
-            json_df = pd.DataFrame(json_payload)
-        
-        st.success("Loaded JSON from: data.json")
-        with st.expander("Preview JSON data"):
-            st.dataframe(json_df, use_container_width=True)
-    except Exception as e:
-        st.error(f"Failed to read JSON: {e}")
-else:
-    st.warning("JSON file not found or empty.")
+try:
+    infile = open("data.json")
+    myData = json.load(infile)
+
+    json_df = pd.DataFrame(myData)
+
+    st.success("Loaded JSON from: data.json")
+    with st.expander("Preview JSON data"):
+        st.dataframe(json_df, use_container_width=True)
+except Exception as e:
+    st.warning("JSON file not found or could not be read.")
 
 
 # GRAPH CREATION
