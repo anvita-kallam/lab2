@@ -108,9 +108,9 @@ st.write("This page displays graphs based on the collected data. The data is bas
 st.divider()
 st.header("Load Data")
 
-# Load CSV with error handling
+# Load CSV
 csv_df = None
-if os.path.exists("data.csv") and os.path.getsize("data.csv") > 0:
+if os.path.exists("data.csv"):
     try:
         csv_df = pd.read_csv("data.csv")
         st.success("Loaded CSV from: data.csv")
@@ -122,18 +122,11 @@ else:
     st.warning("CSV file not found or empty. Add data from the Survey page.")
 
 # Load JSON
-json_df = None
-try:
-    infile = open("data.json")
-    myData = json.load(infile)
-
-    json_df = pd.DataFrame(myData)
-
-    st.success("Loaded JSON from: data.json")
-    with st.expander("Preview JSON data"):
-        st.dataframe(json_df, use_container_width=True)
-except Exception as e:
-    st.warning("JSON file not found or could not be read.")
+infile = open("data.json")
+myData = json.load(infile)
+json_df = pd.DataFrame(myData)
+with st.expander("Preview JSON data"):
+    st.dataframe(json_df, use_container_width=True)
 
 
 # GRAPH CREATION
